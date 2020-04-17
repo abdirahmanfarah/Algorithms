@@ -10,16 +10,16 @@ def recipe_batches(recipe, ingredients):
     # first loop is to check values of recipe
     for key, value in recipe.items():
         # if statement where value of *all ingredients is more than the value of *all recipes
-      for key, value in ingredients.items():
-        y = recipe[key]
-        x = ingredients[key]
-          # print(x, y)
-        if x > y:
+        for key, value in ingredients.items():
+            y = recipe[key]
+            x = ingredients[key]
+            # print(x, y)
+            if x > y:
                 # print ('ingredients[key]')
-          num_of_recipes +=1
+                num_of_recipes += 1
 
-        else:   
-          num_of_recipes
+            else:
+                num_of_recipes
     return num_of_recipes
 
 
@@ -33,3 +33,14 @@ if __name__ == '__main__':
     ingredients = {'milk': 132, 'butter': 48, 'flour': 51}
     print("{batches} batches can be made from the available ingredients: {ingredients}.".format(
         batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
+
+
+def recipe_batches(recipe, ingredients):
+    min_ratio = 0
+    for ingredient, amount in recipe.items():
+        if ingredient not in ingredients:
+            return 0
+        ratio = ingredients[ingredient] // amount
+        if ratio < min_ratio:
+            min_ratio = ratio
+    return min_ratio
